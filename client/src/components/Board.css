@@ -1,0 +1,55 @@
+#root {
+    --background: #F8FAFC;
+    --in-progress-bkg: #F5D565;
+    --add-new-task-bkg: #F5E8D5;
+    --status-add-progress: #E9A23B;
+    --completed-bkg: #A0ECB1;
+    --completed-button: #32D657;
+    --wont-do-bkg: #F7D4D3;
+    --wont-do-button: #DD524C;
+    --to-do-bkg: #E3E8EF;
+}
+
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.board-title {
+    display: flex;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.task {
+    background-color: var(--in-progress-bkg);
+    padding: 0 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-header span {
+    display: block;
+    font-size: 1.5rem;
+}

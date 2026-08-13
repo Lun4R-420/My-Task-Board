@@ -45,11 +45,12 @@ app.post('/api/boards', async (req, res) => {
                     }
                 ]
             }
-        }
+        },
+        include: {
+            tasks: true
+        }   
     });
-    res.status(201).json({
-        id: data.id
-    });
+    res.status(201).json(data);
 });
 
 app.get('/api/boards/:boardId', async (req, res) => {
