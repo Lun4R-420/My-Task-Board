@@ -3,9 +3,10 @@ import Logo from "../assets/Logo.svg";
 import "./Board.css";
 import Edit from "../assets/Edit_duotone.svg";
 import AddTask from "../assets/Add_round_duotone.svg";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Task from "./Task";
 import BoardModal from "./BoardModal.tsx";
+import TaskModal from "./TaskModal.tsx";
 
 function Board() {
     const board = useBoardStore((state) => state.board);
@@ -51,6 +52,10 @@ function Board() {
             </main>
             {isEditingBoard && board && (
                 <BoardModal board={board} handleSaveBoard={handleSaveBoard} handleCancelEdit={handleCancelEdit} />
+            )}
+
+            {isAddingTask && (
+                <TaskModal onClose={() => setIsAddingTask(false)} />
             )}
         </div>
     );

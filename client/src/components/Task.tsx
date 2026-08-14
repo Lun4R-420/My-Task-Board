@@ -21,23 +21,27 @@ function Task({ task }: TaskProps) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     return (
-        <div key={task.id} className={`task ${status.className}`} onClick={() => setIsModalOpen(true)}>
-            <div className="task-icon">
-                {task.icon}
+        <>
+            <div key={task.id} className={`task ${status.className}`} onClick={() => setIsModalOpen(true)}>
+                <div className="task-icon">
+                    {task.icon}
+                </div>
+                <div className="task-body">
+                    <h2>{task.name}</h2>
+                    {task.description && <p>{task.description}</p>}
+                </div>
+                {status.badge && (
+                    <span className="task-status-badge">
+                        <img src={status.badge.icon} alt={status.badge.alt} />
+                    </span>
+                )}
             </div>
-            <div className="task-body">
-                <h2>{task.name}</h2>
-                {task.description && <p>{task.description}</p>}
+            <div>
+                {isModalOpen && (
+                    <TaskModal task={task} onClose={() => setIsModalOpen(false)} />
+                )}
             </div>
-            {status.badge && (
-                <span className="task-status-badge">
-                    <img src={status.badge.icon} alt={status.badge.alt} />
-                </span>
-            )}
-            {isModalOpen && (
-                <TaskModal task={task} onClose={() => setIsModalOpen(false)} />
-            )}
-        </div>
+        </>
     );
 };
 

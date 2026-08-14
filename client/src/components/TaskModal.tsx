@@ -10,13 +10,14 @@ import Save from "../assets/Done_round.svg";
 import "./TaskModal.css";
 
 type TaskModalProps = {
-    task: TaskType;
+    task?: TaskType;
     onClose: () => void;
 };
 
 const icons = ["🧑‍💻", "💬", "☕", "🏋️‍♂️", "📚", "⏰"];
 
 const statusOptions: { key: TaskType["status"]; label: string; className: string; icon: string }[] = [
+    { key: "TO_DO", label: "To Do", className: "to-do", icon: "" },
     { key: "IN_PROGRESS", label: "In Progress", className: "in-progress", icon: inProgressIcon },
     { key: "COMPLETED", label: "Completed", className: "completed", icon: completedIcon },
     { key: "WONT_DO", label: "Won't Do", className: "wont-do", icon: wontDoIcon }
@@ -25,19 +26,28 @@ const statusOptions: { key: TaskType["status"]; label: string; className: string
 function TaskModal({ task, onClose }: TaskModalProps) {
     const updateTask = useBoardStore((state) => state.updateTask);
     const deleteTask = useBoardStore((state) => state.deleteTask);
+    const addTask = useBoardStore((state) => state.addTask);
 
     const [name, setName] = useState(task?.name ?? "");
     const [description, setDescription] = useState(task?.description ?? "");
     const [icon, setIcon] = useState(task?.icon ?? icons[0]);
-    const [status, setStatus] = useState(task?.status ?? "IN_PROGRESS");
+    const [status, setStatus] = useState(task?.status ?? "TO_DO");
 
     async function handleSave() {
-        await updateTask(task.id, { name, description, icon, status });
+        console.log("SAVE CLICKED");
+        if (task) {
+            await updateTask(task.id, { name, description, icon, status });
+        }
+        else {
+            await addTask({ name, description, icon, status });
+        }
         onClose();
     }
 
     async function handleDelete() {
-        await deleteTask(task.id);
+        if (task) {
+            await deleteTask(task.id);
+        }
         onClose();
     }
 
@@ -66,7 +76,7 @@ function TaskModal({ task, onClose }: TaskModalProps) {
                 </div>    
                 <label>Status</label>
                 <div className="status-selection">
-                    {statusOptions.map((option) => (
+                    {statusOptions.filter((op) => op.key !== "TO_DO").map((option) => (
                         <button
                             key={option.key}
                             className={`status-btn ${status === option.key ? "selected" : ""}`}

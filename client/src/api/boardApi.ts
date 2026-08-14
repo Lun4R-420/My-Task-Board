@@ -38,7 +38,7 @@ export async function createTask(boardId: string, taskData: Omit<Task, "id" | "b
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(taskData),
+        body: JSON.stringify({ ...taskData, boardId }),
     });
     return response.json();
 };
