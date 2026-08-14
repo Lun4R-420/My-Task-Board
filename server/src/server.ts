@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 
 app.post('/api/boards', async (req, res) => {
     const name = req.body.name || "My Task Board";
-    const description = req.body.description || "";
+    const description = req.body.description || "Tasks to keep organised";
     const data = await prisma.board.create({
         data: {
             name: name,
@@ -22,25 +22,25 @@ app.post('/api/boards', async (req, res) => {
                     {
                         name: "Task in Progress",
                         description: "",
-                        icon: "📝",
+                        icon: "⏰",
                         status: "IN_PROGRESS",
                     },
                     {
                         name: "Task Completed",
                         description: "",
-                        icon: "📝",
+                        icon: "🏋️‍♂️",
                         status: "COMPLETED",
                     },
                     {
                         name: "Task Won't Do",
                         description: "",
-                        icon: "📝",
+                        icon: "☕",
                         status: "WONT_DO",
                     },
                     {
                         name: "Task To Do",
                         description: "Work on a Challenge on devchallenges.io, learn TypeScript.",
-                        icon: "📝",
+                        icon: "📚",
                         status: "TO_DO",
                     }
                 ]
@@ -85,6 +85,9 @@ app.put('/api/boards/:boardId', async (req, res) => {
         data: {
             name: req.body.name,
             description: req.body.description
+        }, 
+        include: {
+            tasks: true
         }
     });
 

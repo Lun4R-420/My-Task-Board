@@ -15,41 +15,150 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    max-width: 550px;
+    margin: 0 auto;
 }
 
 header {
     width: 100%;
+    margin-bottom: 2rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .board-title {
-    display: flex;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.task {
-    background-color: var(--in-progress-bkg);
-    padding: 0 10px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-}
-
-.task-header {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.task-header span {
+.board-title h1 {
+    margin: 0;
+    font-size: 2.7rem;
+    font-weight: 400;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+header p {
+    margin: 4px 0 0;
+    font-size: 0.9rem;
+    font-weight: 500;
     display: block;
-    font-size: 1.5rem;
+    padding-left: 3.3rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.task {
+    background-color: var(--to-do-bkg);
+    padding: 16px 16px;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+    gap: 12px;
+}
+
+.task.in-progress {
+    background-color: var(--in-progress-bkg);
+}
+.task.completed {
+    background-color: var(--completed-bkg);
+}
+.task.wont-do {
+    background-color: var(--wont-do-bkg);
+}
+.task.to-do {
+    background-color: var(--to-do-bkg);
+}
+
+.task-icon {
+    background-color: white;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.task-body {
+    flex: 1;
+}
+
+.task-body h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.task-body p {
+    margin: 10px 0 0;
+    font-size: 0.9rem;
+    display: block;
+    width: 70%;
+}
+
+.task-status-badge {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.in-progress .task-status-badge {
+    background-color: var(--status-add-progress);
+}
+.completed .task-status-badge {
+    background-color: var(--completed-button);
+}
+.wont-do .task-status-badge {
+    background-color: var(--wont-do-button);
+}
+
+.add-task {
+    background-color: var(--add-new-task-bkg);
+    border: none;
+    border-radius: 10px;
+    padding: 16px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+}
+
+.add-task h2 {
+    font-size: 1rem;
+}
+
+.add-task-icon {
+    background-color: var(--status-add-progress);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
