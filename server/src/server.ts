@@ -1,7 +1,7 @@
 import express from "express";
 import prisma from "./prisma.js"
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const app = express();
 
 app.use(express.json());
@@ -161,8 +161,8 @@ async function startServer() {
         await prisma.$connect();
         console.log("Connected to the database.");
 
-        app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
+        app.listen(PORT, "0.0.0.0", () => {
+        console.log(`Server is running on port ${PORT}`);
     });
     } catch (error) {
         console.error("Error connecting to the database:", error);
