@@ -1,10 +1,12 @@
 import express from "express";
 import prisma from "./prisma.js"
+import cors from "cors";
 
 const PORT = Number(process.env.PORT) || 3000;
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
